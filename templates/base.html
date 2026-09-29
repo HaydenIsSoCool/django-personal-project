@@ -1,0 +1,53 @@
+{% load static %}
+
+<html>
+    <head>
+        
+        <title>PokeDex</title>
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.colors.min.css">
+    </head>
+
+    <body class="container">
+        <header>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="{% url 'home' %}" class="pico-color-red-500" >PokeDex</a>
+                        <img src="{% static 'img/totodile.jpg' %}">
+                    </li>
+                </ul>
+                <ul>
+                    {% if user.is_authenticated %}
+                    <li>
+                        <p class="pico-color-red-500">{{user.username }}</p>
+                    </li>
+                    <li>
+                        <form action="{% url "logout" %}" method ="post">
+                            {% csrf_token %}
+                            <button type="submit">Log Out</button>
+                        </form>
+                    </li>
+                    {% else %}
+                    <li style="margin-right: 10px">
+                        <a href="{% url "login" %}"><button>Log In</button></a>
+                    </li>
+                    <li>
+                        <a href="{% url "signup" %}"><button>Sign Up</button></a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </header>
+        
+        
+        <main class = "container">
+        {% block content%}
+        {% endblock content %}
+        </main>
+    </body>
+
+
+
+</html>

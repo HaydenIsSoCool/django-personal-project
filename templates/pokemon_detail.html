@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+
+<html>
+
+{% block content %}
+
+<div class="pokemon-entry">
+    <h1>{{ pokemon.name }} </h1>
+    <img src="{{ pokemon.cover.url }}">
+    <h2>Type: {{pokemon.type}}</h2>
+    <h2>Dex Number: {{pokemon.dexNum}}</h2>
+    <h2>Region: {{pokemon.gen}}</h2>
+</div>
+
+{% endblock content %}
+
+</html>
+
